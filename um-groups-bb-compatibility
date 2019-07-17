@@ -1,0 +1,11 @@
+/*** This function will hide UM Groups marked as hidden in any Beaver Builder posts module ***/
+
+function dgtl_filter_hidden_groups( $query_args ) {
+	if ( 'um_groups' == $query_args['settings']->post_type ) {
+    $query_args['meta_key'] = '_um_groups_privacy';
+		$query_args['meta_value'] = 'hidden';
+		$query_args['meta_compare'] = '!=';
+	}
+    return $query_args;
+}
+add_filter( 'fl_builder_loop_query_args', 'dgtl_filter_hidden_groups' );
